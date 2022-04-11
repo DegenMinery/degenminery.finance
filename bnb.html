@@ -1,0 +1,169 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="The Degen BNB Miner">
+    <meta name="author" content="Bitty">
+    <title>The Degen BNB Miner</title>
+<!-- BEGIN: CSS Assets-->
+	<link rel="icon" href="favicon.ico" type="image/x-icon"/>
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="css/index.css" />
+<!-- END: CSS Assets-->
+	
+</head>
+
+<body>
+<!----------------HEADER----------------->
+	<div class="head"></div>
+<!----------------HEADER----------------->
+<!----------------CONTENT---------------->
+	<div class="content">
+
+		<div class="center border-yellow mgb15">
+			<h2 class="center100">The Degen BNB Miner</h2>
+		</div>
+
+		<div class="center mgb15 connector-div">
+			<button class="wallet-connector">Connect Wallet</button>
+			<button class="wallet-connected" style="display: none;" ></button>
+		</div>
+
+		<div class="center100 mgb15 border-yellow width400 padbot15 padtop15">
+
+			<table style="width: 100%">
+				<tr>
+					<td colspan="2" class="text-center">
+						<div class="status mgb5">Contract Status</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" class="text-center">
+						<div class="contract-balance mgb15"> --- </div>
+					</td>
+				</tr>
+				<tr>
+					<td class="text-left">
+						<div> Your BNB </div>
+					</td>
+					<td class="text-right">
+						<div class="bnb-color user-balance mgb15"> --- </div>
+					</td>
+				</tr>	
+				<tr>
+					<td colspan="2" class="buy-input-box">
+						<div class="center100">
+							<input class="buy-input text-right" type="number" placeholder="Input BNB Amount"> 
+							<img alt="BNB" class="social" src="img/bnb-logo.png">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" class="buy-button-box">
+						<div class="center">
+							<button class="center buy-button" role="button" onclick="buyDegens()"> Buy Degens </button>
+						</div>
+					</td>
+				</tr>	
+				<tr>
+					<td colspan="2" class="text-center">
+						<div class="user-ref"> --- </div>
+					</td>
+				</tr>		
+			</table>
+
+		</div>
+
+		<div class="center100 mgb15 border-yellow width400 padbot15 padtop15">	
+
+			<table style="width: 100%">
+				<tr>
+					<td class="text-left">
+						<div> Degens Mining </div>
+					</td>
+					<td class="text-right">
+						<div class="degens-mining mgb5"> --- </div>
+					</td>
+				</tr>
+				<tr>
+					<td class="text-left">
+						<div> Coins Found </div>
+					</td>
+					<td class="text-right">
+						<div class="coins-found mgb15"> --- </div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" class="text-center">
+						<div class="bnb-color coin-value mgb15"></div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" class="compound-button-box">
+						<button class="center100 compound-button" role="button" onclick="compoundCoins()"> Buy More Degens (No Tax) </button>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" class="sell-button-box">
+						<button class="center100 sell-button" role="button" onclick="sellCoins()"> Sell Your Coins (10% Tax) </button>
+					</td>
+				</tr>	
+			</table>
+
+		</div>
+
+		<div class="center100 mgb15 border-yellow width400 padbot15 padtop15">	
+
+			<table class="center100 ref-box" style="width: 100%">
+				<tr>
+					<td>
+						<div class="center"> Earn 10% on coin buys and compounds made by your referrals! </div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="center100 ref-link"> Connect Wallet </div>
+					</td>
+				</tr>
+			</table>
+
+		</div>
+
+	</div>
+<!----------------CONTENT---------------->
+</body>
+
+<footer class="center100">
+	<table>
+		<tr>
+			<td colspan="3">
+				<a class="mgb15 center100" href="index.html"><img alt="Telegram" class="home" src="img/Home.png">Back to Mineries List</a>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<a href="https://t.me/DegenMinery" target="_blank"><img alt="Telegram" class="social" src="img/telegram.svg"></a>
+			</td>
+			<td>
+				<a href="https://twitter.com/DegenMinery" target="_blank"><img alt="Twitter" class="social" src="img/twitter.png"></a>
+			</td>
+			<td>
+				<a class="contract-explorer" href="" target="_blank"><img alt="Contract" class="social" src="img/bscscan.png"></a>
+			</td>
+		</tr>
+	</table>
+</footer>
+
+<script type="text/javascript" src="https://unpkg.com/web3@1.2.11/dist/web3.min.js"></script>
+<script type="text/javascript" src="https://unpkg.com/web3modal@1.9.0/dist/index.js"></script>
+<script type="text/javascript" src="js/chainlist.js"></script>
+<script type="text/javascript" src="https://unpkg.com/@walletconnect/web3-provider@1.2.1/dist/umd/index.min.js"></script>
+<script type="text/javascript" src="https://unpkg.com/fortmatic@2.0.6/dist/fortmatic.js"></script>
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/utils.js"></script>
+<script type="text/javascript" src="js/contractAddresses.js"></script>
+<script type="text/javascript" src="js/bnb.js"></script>
+<script type="text/javascript" src="js/connector.js"></script>
+
+</html>
