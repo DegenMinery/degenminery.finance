@@ -25,8 +25,8 @@ console.log("Mobile: " + isMobile)
 window.addEventListener('load', async () => {
     init();
     if(isMobile){
-        $(".wallet-connector").on("touchstart", onConnect);
-        $(".wallet-connected").on("touchstart", onDisconnect);
+        $(".wallet-connector").on("vclick touchstart", onConnect);
+        $(".wallet-connected").on("vclick touchstart", onDisconnect);
     }else{
         $(".wallet-connector").on("click", onConnect);
         $(".wallet-connected").on("click", onDisconnect);

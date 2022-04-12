@@ -1,6 +1,8 @@
 const bnbChainId = 56
 const bnbTestnetId = 97
 const currencyName = "bnb"
+const explorerAddress = "https://bscscan.com/address/"
+const explorerTx = "https://bscscan.com/tx/"
 
 const minerAddress = bnbMinerAddress
 let minerContract
@@ -10,10 +12,12 @@ let sellValue
 
 let infoInterval, sellInterval
 
-$('.contract-explorer')[0].href = "https://bscscan.com/address/"+minerAddress
+let buyButton = '.buy-button', compoundButton = '.compound-button', sellButton = '.sell-button'
+
+$('.contract-explorer')[0].href = explorerAddress+minerAddress
 
 function checkForCorrectChain(id){
-    if(id == bnbChainId || id == bnbTestnetId){
+    if(id == bnbChainId /* || id == bnbTestnetId */){
         $(".wallet-connected")[0].innerHTML = "User " + shortenAddress(userAddress) + "<br>" + "Connected to " + chainNames[chainId];
         buttonConnected()
         connectMinerContract()
@@ -47,23 +51,23 @@ async function checkIfLive(){
 
 function initButtons(){
     if(isMobile){
-        $('.buy-button').on('touchstart', function(){
+        $(buyButton).on('vclick touchstart', function(){
             buyDegens()
         });
-        $('.compund-button').on('touchstart', function(){
-            compundCoins()
+        $(compoundButton).on('vclick touchstart', function(){
+            compoundCoins()
         });
-        $('.sell-button').on('touchstart', function(){
+        $(sellButton).on('vclick touchstart', function(){
             sellCoins()
         });
     }else{
-        $('.buy-button').on('click', function(){
+        $(buyButton).on('click', function(){
             buyDegens()
         });
-        $('.compund-button').on('click', function(){
-            compundCoins()
+        $(compoundButton).on('click', function(){
+            compoundCoins()
         });
-        $('.sell-button').on('click', function(){
+        $(sellButton).on('click', function(){
             sellCoins()
         });
     }
@@ -116,6 +120,13 @@ async function getCoinValue(){
 
 async function buyDegens(){
     let input = $('.buy-input')[0].value
+    if(input == undefined || input == ""){
+        $(buyButton)[0].textContent = 'Input BNB';
+        setTimeout(() => {
+            $(buyButton)[0].textContent = "Buy Degens";
+        }, 1000)
+        return
+    }
     let bnbAmount = web3.utils.toWei(input)
 
     let ref
@@ -124,7 +135,26 @@ async function buyDegens(){
     else 
         ref = marketingAndDevelopmentAddress
 
+    let button = buyButton
     await minerContract.methods.buyCoins(ref).send({value: bnbAmount, from: userAddress})
+    .on('transactionHash', function(hash){
+        console.log(hash)
+        $(button)[0].textContent = 'TX Sent';
+        setTimeout(() => {
+            $(button)[0].textContent = "Buy Degens";
+        }, 5000)
+    }).on('receipt', function(receipt){
+        popupText( hashToClickableUrl(receipt.transactionHash), 10 )
+    }).on('error', function(error, receipt){
+        console.log(error.code)
+        if(error.code == 4001){
+            $(button)[0].textContent = 'TX Declined';
+            setTimeout(() => {
+                $(button)[0].textContent = "Buy Degens";
+            }, 1500)
+        }
+    })
+    
     console.log("Finished Buying")
     getCoinValue()
 }
@@ -136,13 +166,51 @@ async function compoundCoins(){
     else 
         ref = marketingAndDevelopmentAddress
 
+    let button = compoundButton
     await minerContract.methods.buyDegenMinersWithCoin(ref).send({from: userAddress})
+    .on('transactionHash', function(hash){
+        console.log(hash)
+        $(button)[0].textContent = 'TX Sent';
+        setTimeout(() => {
+            $(button)[0].textContent = "Buy More Degens (No Tax)";
+        }, 5000)
+    }).on('receipt', function(receipt){
+        popupText( hashToClickableUrl(receipt.transactionHash), 10 )
+    }).on('error', function(error, receipt){
+        console.log(error.code)
+        if(error.code == 4001){
+            $(button)[0].textContent = 'TX Declined';
+            setTimeout(() => {
+                $(button)[0].textContent = "Buy More Degens (No Tax)";
+            }, 1500)
+        }
+    })
+
     getCoinValue()
     console.log("Finished Compounding")
 }
 
 async function sellCoins(){
+    let button = sellButton
     await minerContract.methods.sellCoins().send({from: userAddress})
+    .on('transactionHash', function(hash){
+        console.log(hash)
+        $(button)[0].textContent = 'TX Sent';
+        setTimeout(() => {
+            $(button)[0].textContent = "Sell Your Coins (10% Tax)";
+        }, 5000)
+    }).on('receipt', function(receipt){
+        popupText( hashToClickableUrl(receipt.transactionHash), 10 )
+    }).on('error', function(error, receipt){
+        console.log(error.code)
+        if(error.code == 4001){
+            $(button)[0].textContent = 'TX Declined';
+            setTimeout(() => {
+                $(button)[0].textContent = "Sell Your Coins (10% Tax)";
+            }, 1500)
+        }
+    })
+
     getCoinValue()
     console.log("Finished Selling")
 }
@@ -156,16 +224,17 @@ function getRefLink(){
 
 function getRef(){
     userRef = getParameter("ref")
-    console.log(userRef)
     if(userRef == undefined)
-    userRef = marketingAndDevelopmentAddress
+        userRef = marketingAndDevelopmentAddress
     else if(!validateErcAddress(userRef)){
         userRef = marketingAndDevelopmentAddress
         $('.user-ref')[0].textContent = "Ref address invalid, default address set."
     }else if(userRef == userAddress){
+        userRef = marketingAndDevelopmentAddress
         $('.user-ref')[0].textContent = "Cannot self-refer, default address set."
     }else
         $('.user-ref')[0].textContent = "Your referral: " + shortenAddress(userRef)
+
     console.log("User Ref: " + userRef)
 }
 

@@ -116,7 +116,12 @@ body{
 }
 
 .width400{
-	width:400px;
+	width: 400px;
+}
+
+.width400pad{
+	padding: 5px 15px;
+	width: 400px;
 }
 
 .fullwidth{
@@ -188,14 +193,13 @@ a:visited {
 }
 
 .wallet-connector{
-	width: 400px;
-	height: 45px;
 	background: red;
 	border: 1px solid red;
-	border-radius: 15px;
-	padding: 5px 15px;
 	transition-duration: 0.4s;
 	color: white;
+	border-radius: 15px;
+	padding: 5px 15px;
+	width: 400px;
 }
 
 .wallet-connector:hover{
@@ -207,14 +211,13 @@ a:visited {
 }
 
 .wallet-connected{
-	width: 400px;
-	height: 45px;
 	background: #0d8f0d;
 	border: 1px solid #0d8f0d;
-	border-radius: 15px;
-	padding: 5px 15px;
 	transition-duration: 0.4s;
 	color: white;
+	border-radius: 15px;
+	padding: 5px 15px;
+	width: 400px;
 }
 
 .wallet-connected:hover{
@@ -340,6 +343,51 @@ input[type=number] {
 	background: rgba(0,150,255,0.9);
 	box-shadow: 0 6px 20px rgb(0 118 255 / 23%);
 }
+
+.popup-overlay {
+	/*Hides pop-up when there is no "active" class*/
+	visibility: hidden;
+	position: absolute;
+	background: black;
+	border: 3px solid #666666;
+	width: 200px;
+	height: 100px;
+	left: 50%;
+	right: 50%;
+  }
+  
+  .popup-overlay.active {
+	/*displays pop-up when "active" class is present*/
+	visibility: visible;
+	text-align: center;
+  }
+  
+  .popup-content {
+	/*Hides pop-up content when there is no "active" class */
+	visibility: hidden;
+  }
+  
+  .popup-content.active {
+	/*Shows pop-up content when "active" class is present */
+	visibility: visible;
+  }
+  
+  .popup-button {
+	display: inline-block;
+	vertical-align: middle;
+	border-radius: 30px;
+	margin: .20rem;
+	font-size: 1rem;
+	color: #666666;
+	background: #ffffff;
+	border: 1px solid #666666;
+  }
+  
+  .popup-button:hover {
+	border: 1px solid #666666;
+	background: black;
+	color: #ffffff;
+  }
 
 
 

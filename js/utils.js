@@ -1,4 +1,4 @@
-let marketingAndDevelopmentAddress = "0x5591A024717515AB2De602A47d568C4ebe733596"
+let marketingAndDevelopmentAddress = "0x184b23f0E1Ed0d38d721A56fCFb9ecae6Ed2FB77"
 
 function shortenAddress(addr){
     let sliceStart = addr.slice(0, 5)
@@ -44,4 +44,30 @@ function validateErcAddress(address) {
         return true;
 
     return false;
+}
+
+function hashToClickableUrl(hash){
+    return `<a href="`+explorerTx+hash+`" target="_blank">TX Link</a>`
+}
+
+function popupText(text, seconds){
+    let countdownSecond = seconds
+    let countdownInterval
+    $('.popup-text')[0].innerHTML = text
+    $('.popup-text')[0].innerHTML += "<br>Closing in... " + countdownSecond
+    countdownInterval = setInterval(() => {
+        countdownSecond--
+        if(countdownSecond < 1)
+        clearInterval(countdownInterval)
+        $('.popup-text')[0].innerHTML = text
+        $('.popup-text')[0].innerHTML += "<br>Closing in... " + countdownSecond
+    }, 1000)
+    $(".popup-overlay, .popup-content").addClass("active");
+    $(".close, .popup-overlay").on("click", function() {
+        $(".popup-overlay, .popup-content").removeClass("active");
+        clearInterval(countdownInterval)
+    });
+    setTimeout(() => {
+        $(".popup-overlay, .popup-content").removeClass("active");
+    }, seconds*1000)
 }

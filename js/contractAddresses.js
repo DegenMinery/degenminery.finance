@@ -1,4 +1,8 @@
 const bnbMinerAddress = '0x5D44059ff7AD513B4C509eCA13c00F136298488f'
+/* 
+bnbMainnetMinerAddress = '0x5D44059ff7AD513B4C509eCA13c00F136298488f'
+bnbTestnetMinerAddress = '0xd79Bf3E6942bD73Ac886a6d546444c7eC320CD13' 
+*/
 
 
 const minerABI = [
