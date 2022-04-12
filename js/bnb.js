@@ -17,6 +17,7 @@ function checkForCorrectChain(id){
         $(".wallet-connected")[0].innerHTML = "User " + shortenAddress(userAddress) + "<br>" + "Connected to " + chainNames[chainId];
         buttonConnected()
         connectMinerContract()
+        initButtons()
         getRefLink()
         getRef()
     }else{
@@ -41,6 +42,30 @@ async function checkIfLive(){
         $(".status")[0].textContent = "Contract is not live!"
         $(".status")[0].style.color = "red"
         console.log("Contract not live yet.")
+    }
+}
+
+function initButtons(){
+    if(isMobile){
+        $('.buy-button').on('touchstart', function(){
+            buyDegens()
+        });
+        $('.compund-button').on('touchstart', function(){
+            compundCoins()
+        });
+        $('.sell-button').on('touchstart', function(){
+            sellCoins()
+        });
+    }else{
+        $('.buy-button').on('click', function(){
+            buyDegens()
+        });
+        $('.compund-button').on('click', function(){
+            compundCoins()
+        });
+        $('.sell-button').on('click', function(){
+            sellCoins()
+        });
     }
 }
 

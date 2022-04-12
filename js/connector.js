@@ -19,11 +19,18 @@ let chainNames = {
     '137': "Polygon Mainnet",
     '25': "Cronos Mainnet"
 }
+let isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+console.log("Mobile: " + isMobile)
 
 window.addEventListener('load', async () => {
     init();
-    $(".wallet-connector").on("click", onConnect);
-    $(".wallet-connected").on("click", onDisconnect);
+    if(isMobile){
+        $(".wallet-connector").on("touchstart", onConnect);
+        $(".wallet-connected").on("touchstart", onDisconnect);
+    }else{
+        $(".wallet-connector").on("click", onConnect);
+        $(".wallet-connected").on("click", onDisconnect);
+    }
 });
 
 async function checkAlreadyConnected() {
