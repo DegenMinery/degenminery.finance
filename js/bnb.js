@@ -17,11 +17,11 @@ let buyButton = '.buy-button', compoundButton = '.compound-button', sellButton =
 $('.contract-explorer')[0].href = explorerAddress+minerAddress
 
 function checkForCorrectChain(id){
+    initButtons()
     if(id == bnbChainId /* || id == bnbTestnetId */){
         $(".wallet-connected")[0].innerHTML = "User " + shortenAddress(userAddress) + "<br>" + "Connected to " + chainNames[chainId];
         buttonConnected()
         connectMinerContract()
-        initButtons()
         getRefLink()
         getRef()
     }else{
@@ -84,7 +84,7 @@ async function displayInfo(){
     web3.eth.getBalance(userAddress).then(result => {
         const bal = web3.utils.fromWei(result, "ether");
         userBalance = parseFloat(bal).toFixed(4);
-        $('.user-balance')[0].innerHTML = userBalance
+        $('.user-balance')[0].innerHTML = "Your Balance " + userBalance + " " + currencyName.toUpperCase()
     })
 
     //Degen miners owned by the user
@@ -214,27 +214,3 @@ async function sellCoins(){
     getCoinValue()
     console.log("Finished Selling")
 }
-
-function getRefLink(){
-    let url = window.location.href.split('?')[0];
-    let refLink = url+"?ref="+userAddress
-    console.log("Referral Link: " + refLink)
-    $('.ref-link')[0].innerHTML = `<button class="ref-button" onclick="copyRefToClipboard('`+refLink+`')">Copy Referral Link</button>`
-}
-
-function getRef(){
-    userRef = getParameter("ref")
-    if(userRef == undefined)
-        userRef = marketingAndDevelopmentAddress
-    else if(!validateErcAddress(userRef)){
-        userRef = marketingAndDevelopmentAddress
-        $('.user-ref')[0].textContent = "Ref address invalid, default address set."
-    }else if(userRef == userAddress){
-        userRef = marketingAndDevelopmentAddress
-        $('.user-ref')[0].textContent = "Cannot self-refer, default address set."
-    }else
-        $('.user-ref')[0].textContent = "Your referral: " + shortenAddress(userRef)
-
-    console.log("User Ref: " + userRef)
-}
-

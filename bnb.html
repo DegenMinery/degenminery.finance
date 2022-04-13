@@ -29,6 +29,8 @@
 		</div>
 <!---------END POPUP PLACEHOLDER---------->
 
+	<div class="container">
+		
 		<div class="center100 border-yellow mgb15">
 			<h2 class="center100">The Degen BNB Miner</h2>
 		</div>
@@ -37,50 +39,25 @@
 			<button class="wallet-connector">Connect Wallet</button>
 			<button class="wallet-connected" style="display: none;" ></button>
 		</div>
+		
+		<div class="border-yellow center100 mgb15 padbot15 padtop15">
+			<div class="container">
+				
+				<div class="status mgb5">Contract Status</div>
 
-		<div class="center100 mgb15 border-yellow width400 padbot15 padtop15">
+				<div class="contract-balance bnb-color mgb30"> --- </div>
 
-			<table style="width: 100%">
-				<tr>
-					<td colspan="2" class="text-center">
-						<div class="status mgb5">Contract Status</div>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2" class="text-center">
-						<div class="contract-balance mgb15"> --- </div>
-					</td>
-				</tr>
-				<tr>
-					<td class="text-left">
-						<div> Your BNB </div>
-					</td>
-					<td class="text-right">
-						<div class="bnb-color user-balance mgb15"> --- </div>
-					</td>
-				</tr>	
-				<tr>
-					<td colspan="2" class="buy-input-box">
-						<div class="center100">
-							<input class="buy-input text-right" type="number" placeholder="Input BNB Amount"> 
-							<img alt="BNB" class="social" src="img/bnb-logo.png">
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2" class="buy-button-box">
-						<div class="center">
-							<button class="center buy-button" role="button"> Buy Degens </button>
-						</div>
-					</td>
-				</tr>	
-				<tr>
-					<td colspan="2" class="text-center">
-						<div class="user-ref"> --- </div>
-					</td>
-				</tr>		
-			</table>
+				<div class="bnb-color text-left user-balance mgb15"> --- </div> 
 
+				<form class="form">
+					<img alt="BNB" src="img/bnb-logo.png" height="24px" style="position: left; position: absolute;">
+					<input type="number" class="buy-input form__field" placeholder="BNB Amount" />
+					<button type="button" class="buy-button btn btn--primary btn--inside uppercase">Buy Degens</button>
+				</form>
+
+				<div class="user-ref"> --- </div>
+
+			</div>
 		</div>
 
 		<div class="center100 mgb15 border-yellow width400 padbot15 padtop15">	
@@ -126,7 +103,7 @@
 			<table class="center100 ref-box" style="width: 100%">
 				<tr>
 					<td>
-						<div class="center"> Earn 10% on coin buys and compounds made by your referrals! </div>
+						<div class="center"> Earn 10% from degen buys and coin compounds made by your referrals! </div>
 					</td>
 				</tr>
 				<tr>
@@ -139,14 +116,16 @@
 		</div>
 
 	</div>
+
+</div>
 <!----------------CONTENT---------------->
 </body>
 
-<footer class="center100">
-	<table>
+<footer class="center100 width400">
+	<table class="center100">
 		<tr>
 			<td colspan="3">
-				<a class="mgb15 center100" href="index.html"><img alt="Telegram" class="home" src="img/home.png">Back to Mineries List</a>
+				<a class="mgb15 center100 href-ref-link" href="/index.html"><img alt="Telegram" class="home" src="img/home.png">Back to Mineries List</a>
 			</td>
 		</tr>
 		<tr>

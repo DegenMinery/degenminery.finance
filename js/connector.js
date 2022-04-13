@@ -23,7 +23,6 @@ let isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.
 console.log("Mobile: " + isMobile)
 
 window.addEventListener('load', async () => {
-    init();
     if(isMobile){
         $(".wallet-connector").on("vclick touchstart", onConnect);
         $(".wallet-connected").on("vclick touchstart", onDisconnect);
@@ -31,6 +30,7 @@ window.addEventListener('load', async () => {
         $(".wallet-connector").on("click", onConnect);
         $(".wallet-connected").on("click", onDisconnect);
     }
+    init();
 });
 
 async function checkAlreadyConnected() {
@@ -47,7 +47,7 @@ async function checkAlreadyConnected() {
 
     try {
         connectedProvider = await web3Modal.connect();
-        console.log("Resuming connection.")
+        console.log("Connected prior. Resuming connection.")
         return true;
     } catch (e) {
         console.log("Could not get a wallet connection", e);
@@ -77,6 +77,11 @@ async function init() {
         disableInjectedProvider: false, // optional. For MetaMask / Brave / Opera.
     });
 
+    if(isMobile){
+        await onDisconnect()
+        fetchAccountData()
+    }
+
     console.log("Web3Modal instance is", web3Modal);
 }
 
@@ -87,8 +92,7 @@ async function fetchAccountData() {
 
     chainId = await web3.eth.getChainId();
     chainData = evmChains.getChain(chainId);
-    console.log(chainData.shortName.toUpperCase())
-    console.log(chainData.name);
+    console.log(chainData.shortName.toUpperCase() + " on " + chainData.name);
 
     const accounts = await web3.eth.getAccounts();
 

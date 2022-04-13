@@ -115,6 +115,10 @@ body{
 	margin-bottom: 15px;
 }
 
+.mgb30{
+	margin-bottom: 30px;
+}
+
 .width400{
 	width: 400px;
 }
@@ -140,6 +144,11 @@ body{
 	border-radius: 15px;
 	padding: 5px 15px;
 	width: 400px;
+}
+
+.border-only-yellow{
+	border: 1px solid #f3c944;
+	border-radius: 15px;
 }
 
 .bnb-color{
@@ -239,51 +248,8 @@ a:visited {
 .text-center{
 	text-align: center;
 }
-  
-input {
-    background: #6d6d6d;
-	color: white;
-}
 
-.input:focus,
-textarea:focus,
-select:focus {
-    outline: none !important;
-}
-
-::placeholder {
-    /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: #333333 !important;
-    opacity: 1;
-    /* Firefox */
-}
-
-/* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-/* Firefox */
-input[type=number] {
-    -moz-appearance: textfield;
-}
-
-::placeholder {
-  color: #333333;
-  opacity: 1; /* Firefox */
-}
-
-:-ms-input-placeholder { /* Internet Explorer 10-11 */
- color: 333333;
-}
-
-::-ms-input-placeholder { /* Microsoft Edge */
- color: 333333;
-}
-
-.buy-button{
+/* .buy-button{
 	display: inline-block;
 	outline: 0;
 	cursor: pointer;
@@ -302,7 +268,7 @@ input[type=number] {
 .buy-button:hover{
 	background: rgba(0,150,255,0.9);
 	box-shadow: 0 6px 20px rgb(0 118 255 / 23%);
-}
+} */
 
 .sell-button{
 	outline: 0;
@@ -389,5 +355,54 @@ input[type=number] {
 	color: #ffffff;
   }
 
-
-
+  .container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+  }
+  .uppercase {
+	text-transform: uppercase;
+  }
+  .btn {
+	display: inline-block;
+	background: transparent;
+	color: inherit;
+	font: inherit;
+	border: 0;
+	outline: 0;
+	padding: 0;
+	transition: all 200ms ease-in;
+	cursor: pointer;
+	width: 200px;
+  }
+  .btn--primary {
+	background: #015ac0;
+	color: #fff;
+	box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
+	border-radius: 2px;
+	padding: 12px 36px;
+  }
+  .btn--primary:hover {
+	background: rgba(0,150,255,0.9);
+	box-shadow: 0 6px 20px rgb(0 118 255 / 23%);
+  }
+  .btn--primary:active {
+	background: #015ac0;
+	box-shadow: inset 0 0 10px 2px rgba(0, 0, 0, 0.2);
+  }
+  .btn--inside {
+	margin-left: -112px;
+  }
+  .form__field {
+	max-width: 300px;
+	background: black;
+	color: #fff;
+	font: inherit;
+	box-shadow: 0 6px 10px 0 rgba(255, 255, 255, 0.1);
+	border: 0;
+	outline: 0;
+	padding: 22px 18px;
+	border: 1px solid #015ac0;
+  }
+  

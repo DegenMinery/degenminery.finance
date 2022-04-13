@@ -23,19 +23,6 @@ function copyRefToClipboard(text){
     }, 1000)
 }
 
-function getParameter(p){
-    var url = window.location.search.substring(1);
-    var varUrl = url.split('&');
-    for (var i = 0; i < varUrl.length; i++)
-    {
-        var parameter = varUrl[i].split('=');
-        if (parameter[0] == p)
-        {
-            return parameter[1];
-        }
-    }
-}
-
 function validateErcAddress(address) {
     if (typeof address !== 'string')
         return false;
@@ -70,4 +57,57 @@ function popupText(text, seconds){
     setTimeout(() => {
         $(".popup-overlay, .popup-content").removeClass("active");
     }, seconds*1000)
+}
+
+function getRefLink(){
+    let url = window.location.href.split('?')[0];
+    let refLink = url+"?ref="+userAddress
+    console.log("User's Referral Link: " + refLink)
+    $('.ref-link')[0].innerHTML = `<button class="ref-button" onclick="copyRefToClipboard('`+refLink+`')">Copy Referral Link</button>`
+}
+
+function getParameter(p){
+    var url = window.location.search.substring(1);
+    var varUrl = url.split('&');
+    for (var i = 0; i < varUrl.length; i++)
+    {
+        var parameter = varUrl[i].split('=');
+        if (parameter[0] == p)
+        {
+            return parameter[1];
+        }
+    }
+}
+
+function getRef(){
+    userRef = getParameter("ref")
+    if(userRef == undefined)
+        userRef = marketingAndDevelopmentAddress
+    else if(!validateErcAddress(userRef)){
+        userRef = marketingAndDevelopmentAddress
+        $('.user-ref')[0].textContent = "Ref address invalid, default address set."
+    }else if(userRef == userAddress){
+        userRef = marketingAndDevelopmentAddress
+        $('.user-ref')[0].textContent = "Cannot self-refer, default address set."
+    }else{
+        $('.user-ref')[0].textContent = "Your referral: " + shortenAddress(userRef)
+    }
+
+    console.log("User's Referer: " + userRef)
+}
+
+updateLinksWithRef()
+function updateLinksWithRef(){
+    let ref = getParameter("ref")
+    if(validateErcAddress(ref)){
+
+        let urlParameter = "?ref=" + ref
+        $('.href-ref-link').each(function(){
+            let pageLink = $(this).attr("href")       
+            $(this).attr({
+                href: window.location.origin + pageLink + urlParameter
+            })
+        })
+
+    }
 }
