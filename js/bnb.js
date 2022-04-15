@@ -17,8 +17,7 @@ let buyButton = '.buy-button', compoundButton = '.compound-button', sellButton =
 $('.contract-explorer')[0].href = explorerAddress+minerAddress
 
 function checkForCorrectChain(id){
-    initButtons()
-    if(id == bnbChainId /* || id == bnbTestnetId */){
+    if(id == bnbChainId || id == bnbTestnetId){
         $(".wallet-connected")[0].innerHTML = "User " + shortenAddress(userAddress) + "<br>" + "Connected to " + chainNames[chainId];
         buttonConnected()
         connectMinerContract()
@@ -49,7 +48,7 @@ async function checkIfLive(){
     }
 }
 
-function initButtons(){
+window.addEventListener('load', async () => {
     if(isMobile){
         $(buyButton).on('vclick touchstart', function(){
             buyDegens()
@@ -71,7 +70,7 @@ function initButtons(){
             sellCoins()
         });
     }
-}
+});
 
 async function displayInfo(){
     //Contract Balance
