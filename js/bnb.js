@@ -17,7 +17,7 @@ let buyButton = '.buy-button', compoundButton = '.compound-button', sellButton =
 $('.contract-explorer')[0].href = explorerAddress+minerAddress
 
 function checkForCorrectChain(id){
-    if(id == bnbChainId || id == bnbTestnetId){
+    if(id == bnbChainId /* || id == bnbTestnetId */){
         $(".wallet-connected")[0].innerHTML = "User " + shortenAddress(userAddress) + "<br>" + "Connected to " + chainNames[chainId];
         buttonConnected()
         connectMinerContract()
