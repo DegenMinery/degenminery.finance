@@ -395,9 +395,9 @@ a:visited {
 	background: #015ac0;
 	box-shadow: inset 0 0 10px 2px rgba(0, 0, 0, 0.2);
   }
-  .btn--inside {
+/*   .btn--inside {
 	margin-left: -112px;
-  }
+  } */
   .form__field {
 	max-width: 300px;
 	background: black;
