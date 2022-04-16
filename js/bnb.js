@@ -38,6 +38,9 @@ async function connectMinerContract(){
 async function checkIfLive(){
     let live = await minerContract.methods.isLive().call()
     if(live){
+        if(typeof countdownTimer !== 'undefined')
+            clearInterval(countdownTimer)
+        $('.countdown')[0].innerHTML = ""
         $(".status")[0].textContent = "Contract is live!"
         $(".status")[0].style.color = "green"
     }else{

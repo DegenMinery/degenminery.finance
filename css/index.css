@@ -155,6 +155,10 @@ body{
 	color: #f3c944;
 }
 
+.countdown{
+	color: red
+}
+
 @media only screen and (max-width: 400px){
 	.center{
 		font-size: 14px;
