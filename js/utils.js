@@ -1,4 +1,4 @@
-let marketingAndDevelopmentAddress = "0x184b23f0E1Ed0d38d721A56fCFb9ecae6Ed2FB77"
+let marketingAndDevelopmentAddress = "0xB206C8b29FAdd947C8FAa09235535c1EEB0F0797"
 
 function shortenAddress(addr){
     let sliceStart = addr.slice(0, 5)
